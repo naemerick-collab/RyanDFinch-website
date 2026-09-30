@@ -999,3 +999,16 @@ a { color: inherit; text-decoration: none; }
   transition: transform 0.3s ease;
 }
 .next-up a:hover .next-up__title .arrow { transform: translateX(6px); }
+
+/* Inline text links (e.g. Tangible Wealth Solutions): match TWS site, no underline, gold on hover */
+.inline-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.inline-link:hover,
+.inline-link:focus-visible { color: #BF9B30; }
+.hero .inline-link:hover,
+.hero .inline-link:focus-visible,
+.footer .inline-link:hover,
+.footer .inline-link:focus-visible { color: #D4B55A; }
