@@ -1012,3 +1012,48 @@ a { color: inherit; text-decoration: none; }
 .hero .inline-link:focus-visible,
 .footer .inline-link:hover,
 .footer .inline-link:focus-visible { color: #D4B55A; }
+
+/* Hero text panel: translucent box behind the copy, solid in the middle
+   with a feathered (blurred) edge so it fades into the photo */
+.hero__panel {
+  --panel-pad: clamp(1.25rem, 2.4vw, 2rem);
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  max-width: 100%;
+  padding: var(--panel-pad);
+  margin-left: calc(-1 * var(--panel-pad));
+}
+.hero__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(28, 26, 23, 0.58);
+  border-radius: 24px;
+  filter: blur(14px);
+}
+.hero__panel .hero__sub { margin-bottom: 1.75rem; }
+/* Desktop: keep the panel to the left of the portrait */
+@media (min-width: 900px) {
+  /* Lighter at the top, where the photo background is lighter */
+  .hero__panel::before {
+    background: linear-gradient(
+      180deg,
+      rgba(28, 26, 23, 0.30) 0%,
+      rgba(28, 26, 23, 0.45) 40%,
+      rgba(28, 26, 23, 0.50) 100%
+    );
+  }
+  .hero__panel .hero__headline {
+    font-size: clamp(1.85rem, 3.3vw, 3.1rem);
+    max-width: 21ch;
+  }
+}
+@media (max-width: 720px) {
+  .hero__panel {
+    --panel-pad: 1.1rem;
+    margin-left: 0;
+  }
+  .hero__panel::before { filter: blur(12px); }
+}
